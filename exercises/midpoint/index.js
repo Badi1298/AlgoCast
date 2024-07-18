@@ -12,6 +12,36 @@
 //   l.insertLast('c')
 //   midpoint(l); // returns { data: 'b' }
 
-function midpoint(list) {}
+// 1. My Solution
+// function midpoint(list) {
+// 	let firstNode = list.getFirst();
+// 	let lastNode = list.getLast();
+
+// 	while (firstNode.next && (firstNode.next !== lastNode || firstNode.next !== null)) {
+// 		if (firstNode.next === lastNode) {
+// 			return firstNode;
+// 		}
+
+// 		list.removeFirst();
+// 		list.removeLast();
+// 		firstNode = list.getFirst();
+// 		lastNode = list.getLast();
+// 	}
+
+// 	return firstNode;
+// }
+
+// 2. Actual solution
+function midpoint(list) {
+	let slow = list.getFirst();
+	let fast = list.getFirst();
+
+	while (fast.next && fast.next.next) {
+		slow = slow.next;
+		fast = fast.next.next;
+	}
+
+	return slow;
+}
 
 module.exports = midpoint;
